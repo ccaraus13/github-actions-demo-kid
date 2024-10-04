@@ -17,7 +17,7 @@ permissions:
   contents: read
 
 jobs:
-  check-task-definition-test:
+  check-task-definition-unittest:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout current repository
@@ -41,6 +41,15 @@ jobs:
           flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
       - name: Run Check Task Definition Unit Tests
         run: pytest aws/check-task-definition/unittests.py
-#    - name: Test with pytest
-#      run: |
-#        pytest
+  check-task-definition-integrationtest:
+    needs:
+      - check-task-definition-unittest
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout current repository
+        uses: actions/checkout@v4
+      - name: Integration test 1
+        uses: ./actions/check-task-definition
+        with:
+          task-definition: "some/dummy/path/task_definition.json"
+          app-config: "some/dummy/path/application.yaml"
