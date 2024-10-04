@@ -48,8 +48,8 @@ jobs:
       - check-task-definition-unittest
     runs-on: ubuntu-latest
     steps:
-#      - name: Checkout current repository
-      - uses: actions/checkout@v4
+      - name: Checkout current repository
+        uses: actions/checkout@v4
       - name: Integration test 1
         uses: ./.github/actions/check-task-definition
         with:
