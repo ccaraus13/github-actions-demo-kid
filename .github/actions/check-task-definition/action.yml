@@ -34,7 +34,7 @@ runs:
       with:
         python-version: '3.9'
         cache: 'pip' # caching pip  dependencies
-        cache-dependency-path: aws/check-task-definition/requirements.txt'
+        cache-dependency-path: 'aws/check-task-definition/requirements.txt'
 
     - name: Install Python dependencies
       shell: bash
