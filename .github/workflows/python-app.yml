@@ -7,7 +7,7 @@ on:
   push:
     branches: [ "main" ]
   pull_request:
-    branches: [ "first-workflow" ]
+    branches: [ "main" ]
 
 permissions:
   contents: read
