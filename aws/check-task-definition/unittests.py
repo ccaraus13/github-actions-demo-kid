@@ -12,3 +12,7 @@ def test_args_empty_optional():
         args = Args()
         assert args.task_definition == "./test_data/task_definition.json"
         assert args.app_config == "./test_data/application-1.yaml"
+
+
+def test_dummy():
+    print("dummy test")
