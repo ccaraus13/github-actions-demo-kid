@@ -16,7 +16,3 @@ def test_args_empty_optional():
 
 def test_dummy():
     print("dummy test")
-
-def test_dummy_fails():
-    print("dummy test fails")
-    exit(13)
