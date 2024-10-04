@@ -53,3 +53,4 @@ jobs:
         with:
           task-definition: "some/dummy/path/task_definition.json"
           app-config: "some/dummy/path/application.yaml"
+
