@@ -15,15 +15,27 @@ inputs:
 runs:
   using: 'composite'
   steps:
+#    - name: Set GitHub Path
+#      run: echo "$GITHUB_ACTION_PATH" >> $GITHUB_PATH
+#      shell: bash
+#      env:
+#        GITHUB_ACTION_PATH: ${{ github.action_path }}
+    - name: Debug
+      shell: bash
+      run: |
+        echo "Demon debug"
+        echo "${{ github.workspace }}"
+        ls -lah
+        ls -lah aws/check-task-definition/requirements.txt
+        
+        pwd
     - name: Set up Python
       uses: actions/setup-python@v5
       with:
         python-version: '3.9'
         cache: 'pip' # caching pip  dependencies
         cache-dependency-path: aws/check-task-definition/requirements.txt'
-    - name: Debug
-      shell: bash
-      run: echo '${{ github.workspace }}'
+
     - name: Install Python dependencies
       shell: bash
       run: pip install -r scripts/aws/check-task-definition/requirements.txt

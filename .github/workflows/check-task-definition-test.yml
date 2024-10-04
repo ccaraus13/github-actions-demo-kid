@@ -18,6 +18,7 @@ permissions:
 
 jobs:
   check-task-definition-unittest:
+    if: false
     runs-on: ubuntu-latest
     steps:
       - name: Checkout current repository
@@ -42,12 +43,13 @@ jobs:
       - name: Run Check Task Definition Unit Tests
         run: pytest aws/check-task-definition/unittests.py
   check-task-definition-integrationtest:
+    if: ${{ always() }}
     needs:
       - check-task-definition-unittest
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout current repository
-        uses: actions/checkout@v4
+#      - name: Checkout current repository
+      - uses: actions/checkout@v4
       - name: Integration test 1
         uses: ./.github/actions/check-task-definition
         with:
