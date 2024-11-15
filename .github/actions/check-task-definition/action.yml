@@ -8,6 +8,9 @@ inputs:
   app-config:
     description: 'Application properties yaml file'
     required: true
+  gha-path:
+    description: 'github action checkout path'
+    default: "."
 
 runs:
   using: 'composite'
@@ -17,13 +20,14 @@ runs:
       with:
         python-version: '3.9'
         cache: 'pip' # caching pip  dependencies
-        cache-dependency-path: 'scripts/aws/check-task-definition/requirements.txt'
+        cache-dependency-path: "${{ github.workspace }}/aws/check-task-definition/requirements.txt"
+
     - name: Install Python dependencies
       shell: bash
-      run: pip install -r scripts/aws/check-task-definition/requirements.txt
+      run: pip install -r ${{ github.workspace }}/aws/check-task-definition/requirements.txt
     - name: Execute Validation
       shell: bash
       run: |
-        python scripts/aws/check-task-definition \
+        python ${{ github.workspace }}/aws/check-task-definition \
           --task-definition ${{ inputs.task-definition }} \
           --app-config ${{ inputs.app-config }}
